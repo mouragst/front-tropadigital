@@ -13,12 +13,14 @@ const SidebarContainer = styled.aside<{ open?: boolean }>`
   left: ${({ open }) => (open ? "0" : "-250px")};
   z-index: 1200;
   transition: left 0.3s;
+  overflow-y: auto;
   @media (min-width: 901px) {
     position: static;
     left: 0;
     transition: none;
+    overflow-y: visible;
   }
-`;
+`
 
 const LogoWrapper = styled.div`
   display: flex;
