@@ -2,6 +2,8 @@
 
 Este projeto foi desenvolvido como parte de um teste prático para a agência Tropa Digital.
 
+Link no Vercel: https://front-tropadigital.vercel.app/
+
 ## Tecnologias utilizadas
 
 - **React + TypeScript**
