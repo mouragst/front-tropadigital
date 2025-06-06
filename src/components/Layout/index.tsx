@@ -1,5 +1,6 @@
 import React from "react";
 import Sidebar from "../Sidebar";
+import Header from "../Header";
 import { 
     LayoutContainer, 
     MainContent 
@@ -9,13 +10,18 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => (
-  <LayoutContainer>
-    <Sidebar />
-    <MainContent>
-      {children}
-    </MainContent>
-  </LayoutContainer>
-);
+const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const userName = "Gustavo Moura";
+
+  return (
+    <LayoutContainer>
+      <Sidebar userName={userName} />
+      <MainContent>
+        <Header userName={userName} />
+        {children}
+      </MainContent>
+    </LayoutContainer>
+  );
+};
 
 export default Layout;

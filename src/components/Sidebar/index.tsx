@@ -1,6 +1,6 @@
 import React from "react";
 import { TropaDigitalLogo } from "../../assets/svgs/TropaDigitalSVG";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   SidebarContainer,
   LogoWrapper,
@@ -19,8 +19,19 @@ import {
 } from "./styles";
 import * as SVG from "../../assets/svgs";
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  userName: string;
+  isSlidingOut?: boolean;
+  onLogout?: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ userName }) => {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate("/login");
+  };
 
   return (
     <SidebarContainer>
@@ -59,7 +70,7 @@ const Sidebar: React.FC = () => {
         <UserProfile>
           <UserAvatar src="https://ui-avatars.com/api/?name=Gustavo+de+Moura" alt="Avatar" />
           <UserInfo>
-            <UserName>Gustavo Moura</UserName>
+            <UserName>{userName}</UserName>
             <UserRole>Administrador</UserRole>
           </UserInfo>
         </UserProfile>
@@ -70,7 +81,7 @@ const Sidebar: React.FC = () => {
             </MenuIcon>
             Alterar dados
           </MenuItem>
-          <MenuItem>
+          <MenuItem onClick={handleLogout}>
             <MenuIcon>
               <SVG.LeaveIcon />
             </MenuIcon>

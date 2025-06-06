@@ -6,3 +6,5 @@ export { CalendarIcon } from "./CalendarIcon";
 export { GroupIcon } from "./GroupIcon";
 export { TeamIcon } from "./TeamIcon";
 export { UserIcon } from "./UserIcon";
+export { SearchIcon } from "./SearchIcon";
+export { MoreOptionsIcon } from "./MoreOptionsIcon";

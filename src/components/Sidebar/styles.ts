@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const SidebarContainer = styled.aside`
-  width: 260px;
+  width: 230px;
   height: 100vh;
   background: #fff;
   display: flex;
@@ -35,12 +35,11 @@ const MenuTitle = styled.div`
   letter-spacing: 1px;
   margin-left: 32px;
   margin-bottom: 8px;
-  padding-left: 16px;
 `;
 
 const MenuList = styled.ul`
   list-style: none;
-  padding: 0 0 0 32px;
+  padding: 0 0 0 16px;
   margin: 0;
   flex: 1;
 `;
@@ -48,13 +47,13 @@ const MenuList = styled.ul`
 const MenuItem = styled.li<{ active?: boolean }>`
   display: flex;
   align-items: center;
+  padding-left: 12px;
   font-size: 14px;
   font-weight: 600;
   color: #252525;
   margin-bottom: 20px;
   cursor: pointer;
   transition: color 0.2s, background 0.2s;
-  padding-left: 16px;
   ${({ active }) =>
     active &&
     `
@@ -76,22 +75,22 @@ const BottomMenuList = styled(MenuList)`
 `;
 
 const BottomSection = styled.div`
-  padding: 0 32px;
+  padding-left: 16px;
 `;
 
 const UserProfile = styled.div`
+  padding-left: 12px;
   display: flex;
   align-items: center;
   gap: 12px;
-  padding-left: 16px;
 `;
 
 const UserAvatar = styled.img`
   width: 45px;
   height: 45px;
-  padding: 4px;
+  padding: 3px;
   border-radius: 15px;
-  border: 2px solid #cc6237;
+  border: 1px solid #cc6237;
   object-fit: cover;
   margin-left: -8px;
 `;
