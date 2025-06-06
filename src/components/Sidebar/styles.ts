@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const SidebarContainer = styled.aside<{ open?: boolean }>`
   width: 230px;
-  height: 100vh;
+  height: 100dvh;
   background: #fff;
   display: flex;
   flex-direction: column;
