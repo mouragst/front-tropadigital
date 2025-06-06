@@ -19,6 +19,15 @@ const LoginBox = styled.div`
     0px 100px 200px 0px #00000040,
     -16px 0 32px -16px #00000020,
     16px 0 32px -16px #00000020;
+
+  @media (max-width: 800px) {
+    width: 100vw;
+    height: 100vh;
+    min-width: 0;
+    min-height: 0;
+    border-radius: 0;
+    padding: 0;
+  }
 `;
 
 const LeftLayout = styled.div`
@@ -28,7 +37,14 @@ const LeftLayout = styled.div`
   padding: 40px 20px 40px 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+
+  @media (max-width: 800px) {
+    width: 100vw;
+    height: 100vh;
+    padding: 40px 10vw;
+    justify-content: center;
+  }
 `;
 
 const LeftContent = styled.div`
@@ -46,7 +62,7 @@ const Title = styled.h1`
   font-size: 26px;
   line-height: 15px;
   letter-spacing: 0%;
-  margin: 0 0 8px 0;
+  margin: 0 0 4px 0;
 `;
 
 const Subtitle = styled.span`
@@ -65,6 +81,10 @@ const RightLayout = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
 
 const OrangeBox = styled.div`
@@ -121,7 +141,7 @@ const LogoWrapper = styled.div`
 `;
 
 const TitleSubtitleWrapper = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   display: flex;
   flex-direction: column;
 `;
