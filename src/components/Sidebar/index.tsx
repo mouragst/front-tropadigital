@@ -1,5 +1,7 @@
-import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { FadeRouteTransitionContext } from "../../context/TransitionContext";
+import Login from "../../pages/Login";
 import {
   SidebarContainer,
   LogoWrapper,
@@ -27,11 +29,15 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ userName, open = true, onClose }) => {
-  const location = useLocation();
   const navigate = useNavigate();
+  const { triggerMenuToLogin } = useContext(FadeRouteTransitionContext);
 
   const handleLogout = () => {
-    navigate("/login");
+    if (triggerMenuToLogin) {
+      triggerMenuToLogin(<Login />, () => navigate("/login"));
+    } else {
+      navigate("/login");
+    }
   };
 
   return (

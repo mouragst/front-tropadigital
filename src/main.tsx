@@ -5,7 +5,7 @@ import AppRoutes from './Routes';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-  <GlobalStyle />
+    <GlobalStyle />
     <AppRoutes />
   </StrictMode>,
 )
