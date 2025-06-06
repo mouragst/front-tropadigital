@@ -2,11 +2,13 @@ import styled, { css } from "styled-components";
 
 const TableContainer = styled.div`
   width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 8px #0000000a;
   padding: 24px;
-  border: 1px solid #09428F2B
+  border: 1px solid #09428F2B;
 `;
 
 const TableHeader = styled.div`
@@ -46,13 +48,16 @@ const SearchInput = styled.input`
   border: none;
   outline: none;
   background: transparent;
-  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.5;
   flex: 1;
 `;
 
 const InsertButton = styled.button`
-  width: 124px;
   height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
   border-radius: 33px;
   padding: 10px 15px;
@@ -63,6 +68,7 @@ const InsertButton = styled.button`
   border: none;
   cursor: pointer;
   transition: filter 0.2s;
+  white-space: nowrap;
   &:hover {
     filter: brightness(0.95);
   }
@@ -70,6 +76,7 @@ const InsertButton = styled.button`
 
 const TableStyled = styled.table`
   width: 100%;
+  min-width: 600px;
   border-collapse: separate;
   border-spacing: 0 8px;
 `;
@@ -80,12 +87,12 @@ const TableBody = styled.tbody``;
 
 const TableRow = styled.tr``;
 
-const TableCell = styled.td<{ header?: boolean }>`
-  padding: 12px 8px;
-  text-align: left;
+const TableCell = styled.td<{ header?: boolean; align?: "left" | "right" }>`
+  padding: 5px 8px;
+  text-align: ${({ align }) => align || "left"};
   width: 261.25px;
   height: 38px;
-  padding-left: 20px;
+  padding-left: 8px;
   box-sizing: border-box;
   ${({ header }) =>
     header

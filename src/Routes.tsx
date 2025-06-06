@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 
 import Login from './pages/Login'
 import Events from './pages/Events';
+import NotFound from './pages/NotFound';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login />} />
         <Route path="/menu/events" element={<Events />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

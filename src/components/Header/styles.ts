@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
 const Container = styled.header`
-  width: 1470px;
+  width: 100%;
   height: 119px;
   padding: 15px;
+  display: flex;
+  position: relative;
 `;
 
 const WelcomeSpan = styled.span`
@@ -14,6 +16,23 @@ const WelcomeSpan = styled.span`
 
   strong {
     color: #101010;
+  }
+`;
+
+const OpenSidebarButton = styled.button`
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 16px;
+  @media (max-width: 900px) {
+    display: block;
+  }
+  svg {
+    margin-bottom: 24px;
+    width: 32px;
+    height: 32px;
+    color: #cc6237;
   }
 `;
 
@@ -29,5 +48,6 @@ const EventsSpan = styled.span`
 export { 
     Container, 
     WelcomeSpan, 
-    EventsSpan 
+    EventsSpan,
+    OpenSidebarButton
 };

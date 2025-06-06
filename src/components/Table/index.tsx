@@ -17,7 +17,12 @@ import {
   PageButton,
   StatusIndicator,
 } from "./style";
-import { SearchIcon, MoreOptionsIcon } from "../../assets/svgs";
+import { 
+  SearchIcon,
+  MoreOptionsIcon, 
+  PlusIcon 
+} from "../../assets/svgs";
+import { Submenu } from "../Submenu";
 
 type Column = {
   key: string;
@@ -31,6 +36,7 @@ type TableProps = {
   onInsert?: () => void;
   onSearch?: (value: string) => void;
   itemsPerPage?: number;
+  searchPlaceholder?: string;
 };
 
 const Table: React.FC<TableProps> = ({
@@ -40,9 +46,12 @@ const Table: React.FC<TableProps> = ({
   onInsert,
   onSearch,
   itemsPerPage = 10,
+  searchPlaceholder,
 }) => {
   const [search, setSearch] = React.useState("");
   const [page, setPage] = React.useState(1);
+  const [submenuOpenIdx, setSubmenuOpenIdx] = React.useState<number | null>(null);
+  const submenuRef = React.useRef<HTMLDivElement | null>(null);
 
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
@@ -67,6 +76,34 @@ const Table: React.FC<TableProps> = ({
     }
   };
 
+  React.useEffect(() => {
+    if (submenuOpenIdx === null) return;
+
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        submenuRef.current &&
+        !submenuRef.current.contains(event.target as Node)
+      ) {
+        setSubmenuOpenIdx(null);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [submenuOpenIdx]);
+
+  const handleView = () => {
+    setSubmenuOpenIdx(null);
+  };
+  const handleEdit = () => {
+    setSubmenuOpenIdx(null);
+  };
+  const handleRemove = () => {
+    setSubmenuOpenIdx(null);
+  };
+
   return (
     <TableContainer>
       <TableHeader>
@@ -77,12 +114,15 @@ const Table: React.FC<TableProps> = ({
               <SearchIcon />
             </span>
             <SearchInput
-              placeholder="Pesquisar"
+              placeholder={searchPlaceholder}
               value={search}
               onChange={handleSearch}
             />
           </SearchInputWrapper>
-          <InsertButton onClick={onInsert}>Inserir novo</InsertButton>
+          <InsertButton onClick={onInsert}>
+            <PlusIcon />
+            Inserir novo
+          </InsertButton>
         </Actions>
       </TableHeader>
       <TableStyled>
@@ -111,8 +151,27 @@ const Table: React.FC<TableProps> = ({
                     )}
                 </TableCell>
                 ))}
-                <TableCell>
-                <MoreOptionsIcon />
+                <TableCell align="right" style={{ position: "relative" }}>
+                  <span
+                    style={{ cursor: "pointer" }}
+                    onClick={() =>
+                      setSubmenuOpenIdx(submenuOpenIdx === idx ? null : idx)
+                    }
+                  >
+                    <MoreOptionsIcon />
+                  </span>
+                  {submenuOpenIdx === idx && (
+                    <div
+                        ref={submenuRef}
+                        style={{ position: "absolute", right: 150, top: 10, zIndex: 200 }}
+                      >
+                      <Submenu
+                        onView={handleView}
+                        onEdit={handleEdit}
+                        onRemove={handleRemove}
+                      />
+                    </div>
+                  )}
                 </TableCell>
             </TableRow>
             ))}

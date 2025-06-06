@@ -1,5 +1,4 @@
 import React from "react";
-import { TropaDigitalLogo } from "../../assets/svgs/TropaDigitalSVG";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   SidebarContainer,
@@ -15,17 +14,19 @@ import {
   UserInfo,
   UserName,
   UserRole,
-  Divider
+  Divider,
+  CloseButton,
+  Overlay
 } from "./styles";
 import * as SVG from "../../assets/svgs";
 
 interface SidebarProps {
   userName: string;
-  isSlidingOut?: boolean;
-  onLogout?: () => void;
+  open?: boolean;
+  onClose?: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ userName }) => {
+const Sidebar: React.FC<SidebarProps> = ({ userName, open = true, onClose }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -34,62 +35,69 @@ const Sidebar: React.FC<SidebarProps> = ({ userName }) => {
   };
 
   return (
-    <SidebarContainer>
-      <LogoWrapper>
-        <TropaDigitalLogo />
-      </LogoWrapper>
-      <MenuTitle>Menu</MenuTitle>
-      <MenuList>
-        <MenuItem active={location.pathname === "/menu/dashboard"}>
-          <MenuIcon>
-            <SVG.DashboardIcon />
-          </MenuIcon>
-          Dashboard
-        </MenuItem>
-        <MenuItem active={location.pathname === "/menu/events"}>
-          <MenuIcon>
-            <SVG.CalendarIcon />
-          </MenuIcon>
-          Eventos
-        </MenuItem>
-        <MenuItem active={location.pathname === "/menu/teams"}>
-          <MenuIcon>
-            <SVG.TeamIcon />
-          </MenuIcon>
-          Equipes
-        </MenuItem>
-        <MenuItem active={location.pathname === "/menu/subscriptions"}>
-          <MenuIcon>
-            <SVG.GroupIcon />
-          </MenuIcon>
-          Inscrições
-        </MenuItem>
-      </MenuList>
-      <Divider />
-      <BottomSection>
-        <UserProfile>
-          <UserAvatar src="https://ui-avatars.com/api/?name=Gustavo+de+Moura" alt="Avatar" />
-          <UserInfo>
-            <UserName>{userName}</UserName>
-            <UserRole>Administrador</UserRole>
-          </UserInfo>
-        </UserProfile>
-        <BottomMenuList>
-          <MenuItem>
+    <>
+      <SidebarContainer open={open}>
+        <CloseButton onClick={onClose}>
+          <SVG.ArrowRightIcon />
+        </CloseButton>
+        <LogoWrapper>
+          <SVG.TropaDigitalLogo />
+        </LogoWrapper>
+        <MenuTitle>Menu</MenuTitle>
+        <MenuList>
+          <MenuItem active={location.pathname === "/menu/dashboard"}>
             <MenuIcon>
-              <SVG.UserIcon />
+              <SVG.DashboardIcon />
             </MenuIcon>
-            Alterar dados
+            Dashboard
           </MenuItem>
-          <MenuItem onClick={handleLogout}>
+          <MenuItem active={location.pathname === "/menu/events"}>
             <MenuIcon>
-              <SVG.LeaveIcon />
+              <SVG.CalendarIcon />
             </MenuIcon>
-            Sair
+            Eventos
           </MenuItem>
-        </BottomMenuList>
-      </BottomSection>
-    </SidebarContainer>
+          <MenuItem active={location.pathname === "/menu/teams"}>
+            <MenuIcon>
+              <SVG.TeamIcon />
+            </MenuIcon>
+            Equipes
+          </MenuItem>
+          <MenuItem active={location.pathname === "/menu/subscriptions"}>
+            <MenuIcon>
+              <SVG.GroupIcon />
+            </MenuIcon>
+            Inscrições
+          </MenuItem>
+        </MenuList>
+        <Divider />
+        <BottomSection>
+          <UserProfile>
+            <UserAvatar src="https://ui-avatars.com/api/?name=Gustavo+de+Moura" alt="Avatar" />
+            <UserInfo>
+              <UserName>{userName}</UserName>
+              <UserRole>Administrador</UserRole>
+            </UserInfo>
+          </UserProfile>
+          <BottomMenuList>
+            <MenuItem>
+              <MenuIcon>
+                <SVG.UserIcon />
+              </MenuIcon>
+              Alterar dados
+            </MenuItem>
+            <MenuItem onClick={handleLogout}>
+              <MenuIcon>
+                <SVG.LeaveIcon />
+              </MenuIcon>
+              Sair
+            </MenuItem>
+          </BottomMenuList>
+        </BottomSection>
+      </SidebarContainer>
+      {/* Overlay para fechar ao clicar fora */}
+      <Overlay open={open} onClick={onClose} />
+    </>
   );
 };
 

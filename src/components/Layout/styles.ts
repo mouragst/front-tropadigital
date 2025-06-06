@@ -3,12 +3,18 @@ import styled from "styled-components";
 const LayoutContainer = styled.div`
   display: flex;
   min-height: 100vh;
+  background-color: #F8F8F8;
 `;
 
 const MainContent = styled.main`
-  flex: 1;
+  width: 100%;
+  overflow-x: hidden;
   padding: 24px;
-  background: #f7f7f7;
+
+  @media (max-width: 900px) {
+    padding: 16px 4vw 16px 4vw;
+    margin-left: 0;
+  }
 `;
 
 export { 

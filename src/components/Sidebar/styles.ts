@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SidebarContainer = styled.aside`
+const SidebarContainer = styled.aside<{ open?: boolean }>`
   width: 230px;
   height: 100vh;
   background: #fff;
@@ -9,6 +9,15 @@ const SidebarContainer = styled.aside`
   justify-content: space-between;
   border-right: 1px solid #eee;
   padding: 32px 0 16px 0;
+  position: fixed;
+  left: ${({ open }) => (open ? "0" : "-250px")};
+  z-index: 1200;
+  transition: left 0.3s;
+  @media (min-width: 901px) {
+    position: static;
+    left: 0;
+    transition: none;
+  }
 `;
 
 const LogoWrapper = styled.div`
@@ -19,11 +28,10 @@ const LogoWrapper = styled.div`
 
 const MenuIcon = styled.span`
   display: inline-flex;
-  align-items: center;
   margin-right: 8px;
   svg {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
   }
 `;
 
@@ -33,25 +41,25 @@ const MenuTitle = styled.div`
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-left: 32px;
-  margin-bottom: 8px;
+  margin-left: 28px;
 `;
 
 const MenuList = styled.ul`
-  list-style: none;
   padding: 0 0 0 16px;
-  margin: 0;
   flex: 1;
 `;
 
 const MenuItem = styled.li<{ active?: boolean }>`
   display: flex;
+  width: 180px;
+  height: 35px;
   align-items: center;
-  padding-left: 12px;
+  padding: 12px;
   font-size: 14px;
   font-weight: 600;
+  margin-right: 16px;
   color: #252525;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
   cursor: pointer;
   transition: color 0.2s, background 0.2s;
   ${({ active }) =>
@@ -66,12 +74,13 @@ const MenuItem = styled.li<{ active?: boolean }>`
   &:hover {
     color: ${({ active }) => (active ? "#ffe3d2" : "rgb(2, 2, 2)")};
     background: ${({ active }) => (active ? "#CC6237" : "#f5e7e1")};
+    border-radius: 5px;
   }
 `
 
 const BottomMenuList = styled(MenuList)`
   padding-left: 0;
-  margin-top: 16px;
+  margin-top: 6px;
 `;
 
 const BottomSection = styled.div`
@@ -82,12 +91,11 @@ const UserProfile = styled.div`
   padding-left: 12px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 `;
 
 const UserAvatar = styled.img`
   width: 45px;
-  height: 45px;
   padding: 3px;
   border-radius: 15px;
   border: 1px solid #cc6237;
@@ -117,6 +125,39 @@ const Divider = styled.hr`
   margin: 32px;
 `;
 
+const CloseButton = styled.button`
+  display: none;
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1300;
+  @media (max-width: 900px) {
+    display: block;
+  }
+  svg {
+    width: 24px;
+    height: 24px;
+    color: #cc6237;
+  }
+`;
+
+const Overlay = styled.div<{ open?: boolean }>`
+  display: none;
+  @media (max-width: 900px) {
+    display: ${({ open }) => (open ? "block" : "none")};
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.2);
+    z-index: 1100;
+  }
+`;
+
 export {
   SidebarContainer,
   LogoWrapper,
@@ -131,5 +172,7 @@ export {
   UserName,
   UserRole,
   MenuIcon,
-  Divider
+  Divider,
+  CloseButton,
+  Overlay
 }
