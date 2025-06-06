@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { FadeRouteTransitionContext } from "../../context/TransitionContext";
-import Login from "../../pages/Login";
 import {
   SidebarContainer,
   LogoWrapper,
@@ -21,6 +20,7 @@ import {
   Overlay
 } from "./styles";
 import * as SVG from "../../assets/svgs";
+import Login from "../../pages/Login";
 
 interface SidebarProps {
   userName: string;

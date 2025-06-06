@@ -10,10 +10,26 @@ const slideInRight = keyframes`
   to   { transform: translateX(0); opacity: 1; }
 `;
 
-export const FadeDiv = styled.div<{ $animate: boolean; $slideOut: boolean; $slideIn: boolean }>`
+const fadeOut = keyframes`
+  from { opacity: 1; }
+  to   { opacity: 0; }
+`;
+
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to   { opacity: 1; }
+`;
+
+export const FadeDiv = styled.div<{
+  $animate: boolean;
+  $slideOut: boolean;
+  $slideIn: boolean;
+  $fadeOut?: boolean;
+  $fadeIn?: boolean;
+}>`
   width: 100%;
   position: relative;
-  ${({ $animate, $slideOut, $slideIn }) =>
+  ${({ $animate, $slideOut, $slideIn, $fadeOut, $fadeIn }) =>
     $animate &&
     ($slideOut
       ? css`
@@ -22,6 +38,14 @@ export const FadeDiv = styled.div<{ $animate: boolean; $slideOut: boolean; $slid
       : $slideIn
       ? css`
           animation: ${slideInRight} 0.5s;
+        `
+      : $fadeOut
+      ? css`
+          animation: ${fadeOut} 0.5s forwards;
+        `
+      : $fadeIn
+      ? css`
+          animation: ${fadeIn} 0.5s;
         `
       : "")}
 `;

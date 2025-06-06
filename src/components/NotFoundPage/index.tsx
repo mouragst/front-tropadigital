@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Title, Description } from './styles';
-import { CharacterSVG } from '../../assets/svgs';
+import { CharacterSVG } from '@/assets/svgs';
 
 const NotFoundPage: React.FC = () => {
   const navigate = useNavigate();

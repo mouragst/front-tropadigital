@@ -1,5 +1,5 @@
 import React from 'react';
-import Table from '../Table';
+import Table from '@/components/Table';
 
 const eventData = Array.from({ length: 9 }).map((_, idx) => ({
     id: idx + 1,

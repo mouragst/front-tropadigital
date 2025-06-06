@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React, { 
+  useState, 
+  useContext 
+} from "react";
 import { useNavigate } from "react-router-dom";
+import { FadeRouteTransitionContext } from "@/context/TransitionContext";
 import {
   Container,
   LoginBox,
@@ -21,16 +25,22 @@ import {
   LoginButton
 } from "./styles";
 
-import * as SVG from "../../assets/svgs";
+import * as SVG from "@/assets/svgs";
 
 const LoginPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const { triggerLoginToMenu } = useContext(FadeRouteTransitionContext);
 
   const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
+  if (triggerLoginToMenu) {
+    triggerLoginToMenu( null, () => navigate("/menu/events")
+    );
+  } else {
     navigate("/menu/events");
-  };
+  }
+};
 
   return (
     <Container>

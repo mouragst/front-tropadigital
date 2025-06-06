@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { FadeRouteTransition } from './components/FadeRouteTransition';
-import Login from './pages/Login'
-import Events from './pages/Events';
-import NotFound from './pages/NotFound';
+import { FadeRouteTransition } from '@/components/FadeRouteTransition';
+import Login from '@/pages/Login'
+import Events from '@/pages/Events';
+import NotFound from '@/pages/NotFound';
 
 const AnimatedRoutes: React.FC = () => {
   const location = useLocation();

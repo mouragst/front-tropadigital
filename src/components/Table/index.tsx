@@ -21,7 +21,7 @@ import {
   SearchIcon,
   MoreOptionsIcon, 
   PlusIcon 
-} from "../../assets/svgs";
+} from "@/assets/svgs";
 import { Submenu } from "../Submenu";
 
 type Column = {

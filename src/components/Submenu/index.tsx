@@ -1,6 +1,6 @@
 import React from "react";
 import { SubmenuContainer, Option } from "./styles";
-import { EyeSVG, EditIcon, TrashIcon } from "../../assets/svgs";
+import { EyeSVG, EditIcon, TrashIcon } from "@/assets/svgs";
 
 interface SubmenuProps {
   onView: () => void;

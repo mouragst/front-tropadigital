@@ -5,7 +5,7 @@ import {
     EventsSpan,
     OpenSidebarButton
 } from './styles';
-import * as SVG from "../../assets/svgs";
+import * as SVG from "@/assets/svgs";
 
 interface HeaderProps {
   userName: string;
